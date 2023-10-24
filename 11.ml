@@ -19,25 +19,23 @@ let t = [8; 2; 22; 97; 38; 15; 0; 40; 0; 75; 4; 5; 7; 78; 52; 12; 50; 77; 91; 8;
          20; 69; 36; 41; 72; 30; 23; 88; 34; 62; 99; 69; 82; 67; 59; 85; 74; 4; 36; 16;
          20; 73; 35; 29; 78; 31; 90; 1; 74; 31; 49; 71; 48; 86; 81; 16; 23; 57; 5; 54;
          1; 70; 54; 71; 83; 51; 54; 69; 16; 92; 33; 48; 61; 43; 52; 1; 89; 19; 67; 48]
-let rec d (x, m, j, xm) =
+let rec d (x, m, j) =
   if x = 400
-  then [string_of_int(m); xm]
+  then m
   else match j with
-        | 0 -> if  (x mod 20 < 17) 
-                  && ((nth t x) * (nth t x+1) * (nth t x+2) * (nth t x+3) > m)
-               then d (x, (nth t x) * (nth t x+1) * (nth t x+2) * (nth t x+3), 1, string_of_int(x)^"/"^string_of_int(x+1)^"/"^string_of_int(x+2)^"/"^string_of_int(x+3)) 
-               else d (x, m, 1, xm)
-        | 1 -> if ((x < 340) && ((nth t x) * (nth t x+20) * (nth t x+40) * (nth t x+60) > m)) 
-               then d (x, (nth t x) * (nth t x+20) * (nth t x+40) * (nth t x+60), 2, string_of_int(x)^"/"^string_of_int(x+20)^"/"^string_of_int(x+40)^"/"^string_of_int(x+60)) 
-               else d (x, m, 2, xm)
-        | 2 -> if ((x < 340) && (x mod 20 < 17) && ((nth t x) * (nth t x+21) * (nth t x+42) * (nth t x+63) > m))
-               then d (x, (nth t x) * (nth t x+21) * (nth t x+42) * (nth t x+63), 3, string_of_int(x)^"/"^string_of_int(x+21)^"/"^string_of_int(x+42)^"/"^string_of_int(x+63))
-               else d (x, m, 3, xm)
-        | 3 -> if ((x < 340) && (x mod 20 > 2) && ((nth t x) * (nth t x+19) * (nth t x+38) * (nth t x+57) > m ))
-               then d (x, (nth t x) * (nth t x+19) * (nth t x+38) * (nth t x+57), 4, string_of_int(x)^"/"^string_of_int(x+19)^"/"^string_of_int(x+38)^"/"^string_of_int(x+57)) 
-               else d(x, m, 4, xm)
-        | _ -> d(x+1, m, 0, xm)
-let a = d (0, 0, 0, "0")
-let b = print_string (nth a 0)
-let e = Printf.printf "\n"
-let c = print_string (nth a 1)
+        | 0 -> if  (x mod 20 < 17)
+                  && ((nth t x) * (nth t (x+1)) * (nth t (x+2)) * (nth t (x+3)) > m)
+               then d (x, (nth t x) * (nth t (x+1)) * (nth t (x+2)) * (nth t (x+3)), 1)      
+               else d (x, m, 1)
+        | 1 -> if ((x < 340) && ((nth t x) * (nth t (x+20)) * (nth t (x+40)) * (nth t (x+60)) > m))
+               then d (x, (nth t x) * (nth t (x+20)) * (nth t (x+40)) * (nth t (x+60)), 2)
+               else d (x, m, 2)
+        | 2 -> if ((x < 340) && (x mod 20 < 17) && ((nth t x) * (nth t (x+21)) * (nth t (x+42)) * (nth t (x+63)) > m))
+               then d (x, (nth t x) * (nth t (x+21)) * (nth t (x+42)) * (nth t (x+63)), 3)
+               else d (x, m, 3)
+        | 3 -> if ((x < 340) && (x mod 20 > 2) && ((nth t x) * (nth t (x+19)) * (nth t (x+38)) * (nth t (x+57)) > m ))
+               then d (x, (nth t x) * (nth t (x+19)) * (nth t (x+38)) * (nth t (x+57)), 4)      
+               else d(x, m, 4)
+        | _ -> d(x+1, m, 0)
+let a = d (0, 0, 0)
+let b = print_int a
