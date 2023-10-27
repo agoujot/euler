@@ -1,7 +1,7 @@
 let rec su l = 
-        match l with
-        | [] -> 0
-        | i::s -> i + su s
+	match l with
+    | [] -> 0
+	| i::s -> i + su s
 
 let rec div(x, i, l) = 
 	if float_of_int i > sqrt(float_of_int x)
