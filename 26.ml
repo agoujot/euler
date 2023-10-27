@@ -18,10 +18,10 @@ let rec di i =
 	else max (cy i) (di(i+1))
 let a = di 1
 let rec dia i =
-        if i = 1000
-        then 1000
-        else
-                if cy i = a
-                then i
-                else dia(i+1)
+	if i = 1000
+	then 1000
+	else
+		if cy i = a
+		then i
+		else dia(i+1)
 let _ = print_int a; print_string " "; print_int(dia 1); print_endline
