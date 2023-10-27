@@ -1,25 +1,25 @@
 open List
 let rec factors (x, l, f)=
-  if x = 1
-  then f
-  else
-    if x mod l = 0 && prime(l, 2) = 1
-    then factors(x/l, l, [l]@f)
-    else factors(x, l+1, f)
+	if x = 1
+	then f
+	else
+		if x mod l = 0 && prime(l, 2) = 1
+		then factors(x/l, l, [l]@f)
+		else factors(x, l+1, f)
 and prime (x, l)=
-  if l > int_of_float (sqrt (float_of_int x))
-  then 1
-  else
-    if x mod l = 0 && prime(l, 2) = 1
-    then 0
-    else prime (x, l+1)
+	if l > int_of_float (sqrt (float_of_int x))
+	then 1
+	else
+		if x mod l = 0 && prime(l, 2) = 1
+		then 0
+		else prime (x, l+1)
 and red(fa, fb, i) =
-        if i = length fa || i = length fb
+	if i = length fa || i = length fb
 	then [ti(fa); ti(fb)]
 	else 
 		if inl(nth fa i, fb)
-	        then red(rem((nth fa i), fa, []), rem((nth fa i), fb, []), i)
-        	else red(fa, fb, i+1)
+		then red(rem((nth fa i), fa, []), rem((nth fa i), fb, []), i)
+		else red(fa, fb, i+1)
 and inl (x, l) =
   match l with
   | [] -> false
@@ -43,6 +43,6 @@ let rec p(a, b) =
 			|| (c.[0] = d.[1] && c.[0] <> '0' &&  e/.f = conv c.[1] /. conv d.[0] && e/.f < 1.)
 			|| (c.[1] = d.[0] && c.[1] <> '0' &&  e/.f = conv c.[0] /. conv d.[1] && e/.f < 1.)
 			|| (c.[1] = d.[1] && c.[1] <> '0' &&  e/.f = conv c.[0] /. conv d.[0] && e/.f < 1.)
-				then let () = print_int a in let () = print_int b in let () =  print_string ";" in p(a+1, b)
-				else p(a+1, b)
+			then let () = print_int a in let () = print_int b in let () =  print_string ";" in p(a+1, b)
+			else p(a+1, b)
 let a = p(10, 10)
