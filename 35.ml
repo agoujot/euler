@@ -1,11 +1,11 @@
 open String
-let rec prime (x, l)=
-  if l > int_of_float (sqrt(float_of_int x))
-  then true
-  else
-    if x mod l = 0 && prime(l, 2)
-    then false
-    else prime (x, l+1)
+	let rec prime (x, l)=
+	if l > int_of_float (sqrt(float_of_int x))
+	then true
+	else
+		if x mod l = 0 && prime(l, 2)
+		then false
+		else prime (x, l+1)
 let rec ci (s, i) =
 	let l = length s in
 	if i = l
