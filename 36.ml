@@ -1,10 +1,10 @@
 let rec pal (s, i) =
-  if i = String.length(s)
-  then true
-  else
-    if s.[i] = s.[String.length(s)-1-i]
-    then pal (s, i+1)
-    else false
+	if i = String.length(s)
+	then true
+	else
+    	if s.[i] = s.[String.length(s)-1-i]
+	    then pal (s, i+1)
+	    else false
 let rec ctb x =
 	if x = 0
 	then ""
