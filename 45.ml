@@ -20,18 +20,18 @@ let lt = Array.length tri -1
 let lp = Array.length pen -1
 let lh = Array.length hex -1
 let rec bsearch (x, i, j, ar) =
-        if i = j
-        then if ar.(i) = x
-                then true
-                else false
-        else
-                let m = (i+j)/2 in
-                if x < ar.(m)
-                then bsearch (x, i, m, ar)
-                else
-                        if x = ar.(m)
-                        then true
-                        else bsearch (x, m+1, j, ar)
+	if i = j
+	then if ar.(i) = x
+		then true
+		else false
+	else
+		let m = (i+j)/2 in
+		if x < ar.(m)
+		then bsearch (x, i, m, ar)
+		else
+			if x = ar.(m)
+			then true
+			else bsearch (x, m+1, j, ar)
 let rec di i =
 	if i = 89600
 	then print_endline "not enough :("
