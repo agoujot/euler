@@ -1,9 +1,8 @@
-let rec som (x, y) = 
-  if x = 0 
-  then y 
-  else
-    if (x mod 3 = 0 || x mod 5 = 0) 
-    then som (x-1, y + x) 
-    else som (x-1, y)
-let a = som(999, 0)
-let b = print_int a
+let rec som x = 
+	if x = 0
+	then 0
+	else
+		if (x mod 3 = 0 || x mod 5 = 0) 
+		then x+som(x-1) 
+		else som (x-1)
+let a = print_jnt som(999)
