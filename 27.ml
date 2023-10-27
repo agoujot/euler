@@ -1,10 +1,10 @@
 let rec prime (x, l)=
-  if l > int_of_float (sqrt(float_of_int x))
-  then true
-  else
-    if x mod l = 0 && prime(l, 2)
-    then false
-    else prime (x, l+1)
+	if l > int_of_float (sqrt(float_of_int x))
+	then true
+	else
+		if x mod l = 0 && prime(l, 2)
+		then false
+		else prime (x, l+1)
 let rec di(a, b, i, ma, mb, mi) =
 	if a > 1000
 	then ma*mb
