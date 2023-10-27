@@ -1,12 +1,22 @@
 open List
+open Printf
+open String
 
-let prime (x, l)=
+let rec prime (x, l)=
   if l > int_of_float (sqrt(float_of_int x))
-  then 1
+  then true
   else
-    if x mod l = 0 && prime(l, 2) = 1
-    then 0
+    if x mod l = 0
+    then false
     else prime (x, l+1)
+
+let pris n =
+	if n = 1
+	then []
+	else 
+		if prime(n, 2)
+		then [n]@pris(n-1)
+		else pris(n-1)
 
 let rec printl l = 
   match l with
@@ -17,12 +27,20 @@ let rec factors (x, l, f)=
   if x = 1
   then f
   else
-    if x mod l = 0 && prime(l, 2) = 1
+    if x mod l = 0 && prime(l, 2)
     then factors(x/l, l, [l]@f)
     else factors(x, l+1, f)
 
-let rec fib (a, b) =
-  fib(b, a+b)
+let rec div(x, i, l) =
+        if float_of_int i > sqrt(float_of_int x)
+        then l
+        else
+                if x mod i = 0
+                then
+			if i = x/i
+			then div(x, i+1, l@[i])
+			else div(x, i+1, l@[i; x/i])
+                else div(x, i+1, l)
 
 let rec pal (s, i) =
   if i = String.length(s)
@@ -71,7 +89,7 @@ let rec fb (sa, sb, i, s) =
 	else
 		if sb.[i] = '1'
 		then fb (sa, sb, i+1, s+cfb(sa, 0, 0))
-
+		else fb (sa, sb, i+1, s)
 let rec inv (s, i) =
 	let l = String.length s in
 	if i = l
@@ -84,7 +102,7 @@ let rec inv (s, i) =
 let rec su l  =
 	match l with
 	| [] -> 0
-	| i::S -> i + su s
+	| i::s -> i + su s
 
 let rec ti l =
 	match l with
@@ -94,13 +112,35 @@ let rec ti l =
 let rec rem(x, l, r) =
 	match l with
 	| [] -> r
-	| i::-> if i = x
+	| i::s -> if i = x
 		then r@s
 		else rem(x, s, r@[i])
 
 let rec red(fa, fb, i) =
-	if i = length fa || i = length gb
+	if i = length fa || i = length fb
 	then [float_of_int(ti(fa)); float_of_int(ti(fb))]
 	else
 		if inl(nth fa i, fb)
 		then red(rem((nth fa i), fa, []), rem((nth fa i), fb, []), i)
+		else red(fa, fb, i+1)
+
+let rec bsearch (x, i, j) =
+        if i = j
+        then if ar.(i) = x
+                then true
+                else false
+        else
+                let m = (i+j)/2 in
+                if x < ar.(m)
+                then bsearch (x, i, m)
+                else
+                        if x = ar.(m)
+                        then true
+                        else bsearch (x, m+1, j)
+
+let rec s_l (s, i, l)=
+	if i = length s - 1
+	then l
+	else s_l (s, i+1, l@[int_of_char(s.[1]) - 30])
+
+let tri l = sort Stdlib.compare l
