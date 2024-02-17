@@ -1,6 +1,4 @@
-function get(st, i)
-	return st:byte(i)-48
-end
+require "lib";
 function test(n)
 	local s = 0;
 	local x = n; 
