@@ -1,4 +1,3 @@
-
 let rec cyc (r, d, p) =
 	if r = 0
 	then 0
