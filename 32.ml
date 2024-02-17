@@ -1,14 +1,7 @@
 open String
+open Lib
 let s l = List.sort Stdlib.compare l
 let p = [1;2;3;4;5;6;7;8;9]
-let rec printl l =
-	match l with
-	| [] -> print_endline ""
-	| i::s -> print_int i; print_string "; "; printl s
-let rec s_l (s, i, l)=
-	if i = length s
-	then l
-	else s_l (s, i+1, l@[int_of_char(s.[i]) - 48]) 
 let rec di (c, a, so) =
 	if c = 10000
 	then print_int so
