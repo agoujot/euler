@@ -1,10 +1,4 @@
-let rec prime (x, l) =
-	if l > int_of_float (sqrt (float_of_int x))
-	then 1
-	else
-		if x mod l = 0 && prime(l, 2) = 1
-		then 0
-		else prime (x, l+1)
+open Lib
 let rec test (x, l, h) =
 	if x = 1
 	then h
