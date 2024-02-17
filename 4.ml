@@ -1,10 +1,4 @@
-let rec pal (s, i) =
-	if i = String.length(s)
-	then true
-	else
-		if s.[i] = s.[String.length(s)-1-i]
-		then pal (s, i+1)
-		else false
+open Lib
 let rec b (l1, l2, h) =
 	if l1 = 1000
 	then 
