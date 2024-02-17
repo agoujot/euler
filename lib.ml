@@ -1,6 +1,4 @@
-open List
 open Printf
-open String
 
 let pie x = print_int x; print_endline ""
 
@@ -12,12 +10,12 @@ let rec prime (x, l)=
         then false
         else prime (x, l+1)
 
-let pris n =
+let rec pris n =
     if n = 1
     then []
     else
         if prime(n, 2)
-        then [n]@pris(n-1)
+        then n::pris(n-1)
         else pris(n-1)
 
 let rec printl l =
@@ -32,6 +30,16 @@ let rec factors (x, l, f)=
         if x mod l = 0 && prime(l, 2)
         then factors(x/l, l, [l]@f)
         else factors(x, l+1, f)
+
+let cf n =
+	let rec it n p ds l =
+		if n = 1 then 0 else
+		if n mod p == 0 then 
+			(if List.mem p ds 
+			then it (n/p) p ds l
+			else 1+it (n/p) p (p::ds) l) 
+		else it n (List.hd l) ds (List.tl l)
+	in it n 2 [] (pris n)
 
 let rec div(x, i, l) =
     if float_of_int i > sqrt(float_of_int x)
@@ -112,21 +120,23 @@ let rec ti l =
     | [] -> 1
     | i::s -> i * ti s
 
-let rec rem(x, l, r) =
+let rec rem x l =
     match l with
-    | [] -> r
+    | [] -> []
     | i::s ->
         if i = x
-        then r@s
-        else rem(x, s, r@[i])
+        then s
+        else i::rem x s
 
 let rec red(fa, fb, i) =
-    if i = length fa || i = length fb
+    if i = List.length fa || i = List.length fb
     then [float_of_int(ti(fa)); float_of_int(ti(fb))]
     else
-        if inl(nth fa i, fb)
-        then red(rem((nth fa i), fa, []), rem((nth fa i), fb, []), i)
+        if inl(List.nth fa i, fb)
+        then red(rem (List.nth fa i) fa, rem (List.nth fa i) fb, i)
         else red(fa, fb, i+1)
+
+let ar = [||]
 
 let rec bsearch (x, i, j) =
     if i = j
@@ -144,8 +154,8 @@ let rec bsearch (x, i, j) =
             else bsearch (x, m+1, j)
 
 let rec s_l (s, i, l)=
-    if i = length s - 1
+    if i = String.length s - 1
     then l
     else s_l (s, i+1, l@[int_of_char(s.[1]) - 30])
 
-let tri l = sort Stdlib.compare l
+let tri l = List.sort Stdlib.compare l
