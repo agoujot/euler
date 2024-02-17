@@ -1,17 +1,4 @@
-let rec pal (s, i) =
-	if i = String.length(s)
-	then true
-	else
-    	if s.[i] = s.[String.length(s)-1-i]
-	    then pal (s, i+1)
-	    else false
-let rec ctb x =
-	if x = 0
-	then ""
-	else
-		let r = x mod 2 in
-		let q = x/2 in
-		ctb q ^ string_of_int r 
+open Lib
 let rec s (n, so) =
 	if n = 1000000
 	then so
